@@ -1,0 +1,112 @@
+1. Introduction -
+
+Hello, I'm Aarju,
+I belongs to Kanpur, a happiest city in india.
+I've completed Bachelors with mathematics in 2020 from Kanpur university.
+as a software developer with overall 4 years of experience in which 1 & half year in php with CI framework and 2 & half year as a nodejs developer.
+I have worked on 4-5 projects on nodejs. stacks that i have worked on express js framework with mysql database along with sequelize ORM.
+
+That's all about me . Thank you.
+
+==============================================================================================================================================================
+
+2.  Strengths  -
+
+1. Strong problem-solving skills and ability to think logically and analytically.
+2. I am able to adjust my learning plans and goals as needed, and are open to trying new approaches and strategies. 
+
+
+Weekness   -
+
+Struggling to manage emotions in high-pressure situations,
+
+
+Solutions   -
+
+To overcome this weakness, I've started practicing mindfulness or meditation and some physical exercise or stress-reducing activities. 
+ex -Stretching, Yoga, Deep breathing, 
+
+
+=================================================================================================================================================================
+
+
+3. What drives you in your career -
+
+1. Career growth -  There are many opportunities for career growth and advancement in the field of software development.
+2. Flexibility   -  The field of software development offers a lot of flexibility and freedom.
+3. Creativity    -  Software development allows for a lot of creativity and innovation, and I am driven by the opportunity to build unique and innovative solutions.
+
+
+====================================================================================================================================================================
+
+4.  Describe recent project -
+
+One of my most recent projects is as a Node.js backend developer for a 
+Ride (Name is RSA . full form is Ride Sharing App in which multiple people can share a single ride and pay according to their ride distance),
+project based on microservices architecture.
+Stacks that I used in that project was Node js express framework , mysql database with sequelize ORM.
+where I was responsible for designing and implementing the server-side architecture.
+
+1. Designing and implementing RESTful APIs for the frontend team to consume
+2. Building and maintaining a MySql database to store user data.
+3. Implementing authentication and authorization using JWT.
+4. Collaborating with the frontend team to ensure seamless integration between the backend and frontend.
+
+
+What I learned from this project -
+
+Microservices architecture -  This approach is often referred to as modular programming, and it helps to improve code readability, maintainability, and scalability.
+
+
+
+That's all about my project. Thank you.
+====================================================================================================================================================================
+
+
+5.  Leadership qualities -
+
+
+1. Collaboration   - By being a collaborative team player , I help my team to build a positive and productive work environment
+2. Communication   - By being a strong communicator, I can help my team to ensure that everyone is on the same page and working towards the same goals.
+3. Problem-solving - By demonstrating my problem-solving skills, I can help to lead my team through difficult situations and find innovative solutions to problems.
+4. Mentoring       - As I was leading my recent project . I had the opportunity to mentor junior developers or interns.
+		     By sharing my knowledge and experience for the growth and success of my team.
+
+
+=====================================================================================================================================================================
+
+6.  Where do you see yourself in next 5 years  -
+
+
+As a backend developer, I see myself continuing to grow and develop my skills and expertise in the field. In the next five years.
+I also plan to stay up-to-date with the latest technologies and trends in backend development, such as serverless architecture, microservices, and containerization.By
+continuously learning and expanding my knowledge, I can ensure that I am able to provide the best possible solutions to my clients and contribute to the success of my organization.
+
+ 
+=======================================================================================================================================================================================
+
+7. How do you manage extra work - 
+       
+  By :
+
+1. Prioritize tasks                 -  When faced with extra work, it's important to prioritize tasks based on their urgency and importance. 
+2. Break tasks into smaller parts   -  Large tasks can be overwhelming, so breaking them down into smaller parts can make them more manageable
+3. Set realistic deadlines          -  Setting realistic deadlines can help to ensure that you are able to complete extra work on time.
+4. Communicate with my team         -  If I am struggling to manage extra work, it's important for me to communicate with my team.
+
+
+=====================================================================================================================================================================
+
+8. What do you do for stressed out -
+
+
+1. I often do meditation exercises for relaxing and reduce stress.
+2. I watch some funny videos for reduce stress.
+
+
+====================================================================================================================================================================
+
+
+
+
+
