@@ -417,9 +417,9 @@ deepCopy.b.c = 4; // Changes deepCopy, but not originalObject
 //================ Laxical scope  ===============================
 
 
-    lexical scope is the concept of determining the scope of a variable based on its declaration. This means that the scope of a variable is determined by the block of code in which it is declared, not by the block of code in which it is used.
+Lexical scope (also known as static scope) refers to the scope that is determined at the time the code is written, not when it is executed. In JavaScript, this means that the scope of a variable is defined by its position in the source code, and nested functions have access to variables declared in their outer scope.
 
-
+lexical scope is the concept of determining the scope of a variable based on its declaration. This means that the scope of a variable is determined by the block of code in which it is declared, not by the block of code in which it is used.
 
 
 //================ MYSQL Stored Procedure ===============================
