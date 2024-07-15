@@ -225,3 +225,88 @@ setImmediate schedules console.log('Immediate'); to run in the check phase.
 console.log('End'); executes.
 process.nextTick callback executes before the event loop continues.
 Finally, the setImmediate callback executes.
+
+
+
+// ======================= output with forloop ==============
+
+
+setTimeout(() => {
+  console.log('Timeout');
+}, 2000);
+
+setImmediate(() => {
+  console.log('Immediate');
+});
+
+
+process.nextTick(() => {
+  console.log('Next Tick');
+});
+
+Promise.resolve().then(() => {
+  console.log('Promise');
+});
+for (let k = 0; k < 10; k++) {
+  console.log(k);
+}
+
+console.log('End');
+
+
+Output-
+
+Start
+0
+1
+2
+...
+8
+9
+End
+Next Tick
+Promise
+Immediate
+Timeout
+
+
+
+// setTimeout time is 0 then it will print Timeout before Immediate ==========
+
+setTimeout(() => {
+  console.log('Timeout');
+}, 0);
+
+setImmediate(() => {
+  console.log('Immediate');
+});
+
+
+process.nextTick(() => {
+  console.log('Next Tick');
+});
+
+Promise.resolve().then(() => {
+  console.log('Promise');
+});
+for (let k = 0; k < 10; k++) {
+  console.log(k);
+}
+
+console.log('End');
+
+
+Output-
+
+Start
+0
+1
+2
+...
+8
+9
+End
+Next Tick
+Promise
+Timeout
+Immediate
