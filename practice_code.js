@@ -147,6 +147,9 @@ if (1 > 2 > 3) {
 
 //==================== if conditions end ==================    ///
 
+
+// ============= Closure start ================
+
 function new_close() {
     let obj = { "name": "aarju", age: 45 }
     return function () {
@@ -157,6 +160,39 @@ function new_close() {
 let newfunc = new_close();
 newfunc();
 
+
+function createCounter() {
+    let count = 0;
+  
+    return function() {
+      count++;
+      console.log(count);
+    };
+  }
+  
+  const counter = createCounter();
+  counter(); // Logs 1
+  counter(); // Logs 2
+  counter(); // Logs 3
+
+Explanation-
+
+The createCounter function defines a variable count and returns an inner function that increments and logs count.
+Even though count is defined in the lexical scope of createCounter, the returned inner function retains access to count through a closure, allowing it to increment and log count each time it is called.
+
+
+1. Lexical scope in JavaScript means that the scope of a variable is determined by its location in the source code.
+
+2. Global Scope: Variables declared outside any function are globally accessible.
+
+3. Function Scope: Variables declared within a function are accessible only within that function.
+
+4. Block Scope: Variables declared with let and const inside a block are accessible only within that block.
+Closures: Functions retain access to their lexical scope even when executed outside that scope.
+
+
+
+// ============= End ======================
 
 
 
