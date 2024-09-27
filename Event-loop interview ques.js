@@ -25,8 +25,10 @@ setInterval
 setImmediate (Node.js-specific)
 I/O tasks
 UI rendering tasks
-process.nextTick vs setImmediate
 
+
+
+process.nextTick vs setImmediate -
 
 process.nextTick -
 Type: Microtask
@@ -42,8 +44,9 @@ Use Case: Tasks that should be executed after the current event loop iteration, 
 Example to Illustrate Microtasks and Macrotasks
 Let's consider a piece of code to see how microtasks and macrotasks are executed:
 
-javascript
-Copy code
+
+javascript code -
+
 console.log('Start');
 
 setTimeout(() => {
@@ -310,3 +313,116 @@ Next Tick
 Promise
 Timeout
 Immediate
+
+//=============== Output of this code =========================
+
+let abc ="hello"
+
+function getfun(){
+
+console.log("sdfbsfd", this.abc)
+console.log("sdfhsdgfjs", abc)
+}
+getfun() 
+
+
+output 1. -
+
+console.log("sdfbsfd", this.abc); // undefined  - this.abc is undefined because let does not create a property on the global object. If abc was declared with var, this.abc would be "hello".
+console.log("sdfhsdgfjs", abc);   // "hello"
+
+with var definition -
+
+console.log("sdfbsfd", this.abc); // hello
+console.log("sdfhsdgfjs", abc); // hello
+
+In strict mode:
+
+this would be undefined, and accessing this.abc would throw an error. Since you did not enable strict mode, this doesn't apply here.
+
+Output -
+  console.log("sdfbsfd", this.abc); // TypeError: Cannot read property 'abc' of undefined
+  console.log("sdfhsdgfjs", abc);   // "hello"
+
+
+  //==================== Thread Pool ===========================
+
+  In Node.js, the thread pool is a mechanism that handles the execution of asynchronous operations that cannot be executed on the main event loop. These operations typically include file system operations, DNS lookups, cryptographic operations, and compression, among others. The thread pool ensures that these tasks do not block the event loop, thus allowing Node.js to remain non-blocking and highly performant.
+
+  The thread pool in Node.js is a powerful feature for managing asynchronous I/O operations, enabling Node.js to remain non-blocking and efficient. By understanding and properly configuring the thread pool, you can optimize your Node.js applications for better performance and scalability.
+
+How the Thread Pool Works-
+
+  Node.js uses the libuv library to provide a thread pool. By default, this thread pool contains four threads, but this can be adjusted.
+
+
+Default Thread Pool Size-
+
+  The default size of the thread pool is 4, but you can adjust it using the UV_THREADPOOL_SIZE environment variable.
+
+Example -
+
+  
+process.env.UV_THREADPOOL_SIZE = 8;
+const fs = require('fs');
+
+console.log('Start');
+
+for (let i = 0; i < 10; i++) {
+  fs.readFile('example.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(`File ${i + 1} content:`, data);
+  });
+}
+
+console.log('End');
+
+
+// ======================= Worker Thread =========================
+
+Worker threads in Node.js provide a way to run JavaScript code in parallel, allowing for the execution of CPU-bound tasks without blocking the main event loop. This feature is useful for applications that need to perform intensive computations or need parallel processing capabilities.
+
+Key Concepts
+Worker Threads: Separate threads that can execute JavaScript code in parallel with the main event loop.
+Main Thread: The main Node.js event loop that handles I/O operations and the non-blocking execution of JavaScript code.
+Thread-safe: Operations that can be safely executed across multiple threads without causing data corruption or race conditions.
+
+
+example- 
+
+const { Worker } = require('worker_threads');
+
+// Function to create a worker and handle its messages
+function runService(workerData) {
+  return new Promise((resolve, reject) => {
+    const worker = new Worker('./worker.js', { workerData });
+    worker.on('message', resolve);
+    worker.on('error', reject);
+    worker.on('exit', (code) => {
+      if (code !== 0)
+        reject(new Error(`Worker stopped with exit code ${code}`));
+    });
+  });
+}
+
+// Use the worker thread
+runService('Hello, Worker!')
+  .then(result => console.log(result))
+  .catch(err => console.error(err));
+
+
+  Worker Thread (worker.js) code : 
+
+  const { parentPort, workerData } = require('worker_threads');
+
+// Perform a computation or a task
+const result = workerData + ' - Processed by Worker';
+
+// Send the result back to the main thread
+parentPort.postMessage(result);
+
+
+In this example:
+
+The main thread creates a worker thread using the Worker constructor and specifies the script to run (worker.js).
+The worker thread receives data from the main thread (workerData), processes it, and sends a message back to the main thread using parentPort.postMessage.
