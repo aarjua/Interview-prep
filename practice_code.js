@@ -2,7 +2,50 @@
 
   Remove node_module from project CMD -  npx rimraf node_modules
 
-// ================================== convert these strings to numbers without unsing any javascript function. =============================
+
+
+  //===============================   Output of these ======================
+
+
+  var x = 21;
+var demo = function () {
+    console.log(x);
+    var x = 20;   // coz it will defined with value after consoling
+};
+demo();   // output is undefined
+
+
+
+  let x = 21;
+var demo = function () {
+    console.log(x);
+    let x = 20;   // coz it will initialize with value after consoling and let does not hoisted
+};
+demo();   // output is initialize error
+
+
+
+// ==================== Floating point presion error ===================
+
+Floating-point precision in JavaScript refers to how numbers with decimal points (known as floating-point numbers) are stored and handled. JavaScript follows the IEEE 754 standard for representing floating-point numbers, which means numbers are stored in a binary format that can lead to precision errors, especially when dealing with very small or very large numbers.
+
+Why Floating-Point Precision Errors Occur:
+Floating-point numbers are stored as binary fractions. Some decimal fractions, like 0.1 and 0.2, cannot be precisely represented in binary, leading to rounding errors.
+For example, when you add 0.1 and 0.2, the actual result in binary is something like 0.30000000000000004, not exactly 0.3.
+
+console.log((0.6 + 0.2) === 0.8)  // 0.8 , true
+console.log((0.3 + 0.2) === 0.5)  // 0.5 , true Plus ke case me sab thik chalega 
+console.log((0.1 + 0.2))  // 0.30000000000000004 ,  keval 0.1+0.2 me aise number aaenge , for round we can use toFixed((0.1 + 0.2))
+
+console.log((0.1 + 0.2).toFixed(2))  // 0.30 ,  (0.1 + 0.2).toFixed(1) - 0.3
+
+console.log((0.6 - 0.2) ) // 0.39999999999999997
+console.log((0.4 - 0.1) ) // 0.30000000000000004   , Minus me aise hi number aaenge
+
+console.log((0.1 + 0.2) == 0.3)   // false , coz  (0.1 + 0.2), 0.1+0.2 this will print 0.30000000000000004
+console.log((0.1 + 0.2) == (0.4 - 0.1))  // true
+
+// ============ convert these strings to numbers without unsing any javascript function. =============================
 
 const str1 = '247';
 const num1 = +str1;
@@ -85,7 +128,36 @@ for (let i = 0; i < array1.length; i++) {
 console.log(newarr)
 console.log(duplicate)
 
+// ============== list 10 fabonacci no. =======================
 
+
+Formally, the Fibonacci sequence can be defined as: to find the current index value we have to get the pervious index val arr(n-1) and  previous of previous value  arr(n-2) . then sum of these index value
+
+current index value = arr(n-1) + arr(n-2)
+
+F(0) = 0
+F(1) = 1
+F(n) = F(n-1) + F(n-2) for n > 1
+
+function fibonacciSeries(length) {
+    let series = [];
+    if (length >= 1) {
+        series.push(0);
+    }
+    if (length >= 2) {
+        series.push(1);
+    }
+    for (let i = 2; i < length; i++) {
+    console.log("hh",series[i - 1] + series[i - 2])
+        series.push(series[i - 1] + series[i - 2]);
+    }
+    return series;
+}
+
+// Example usage:
+let length = 10; // Number of Fibonacci numbers to generate
+let fibonacciArray = fibonacciSeries(length);
+console.log(fibonacciArray);
 
 // ================= find the missing no. and add in place of 0 ==============================
 
@@ -147,11 +219,30 @@ if (1 > 2 > 3) {
 
 //==================== if conditions end ==================    ///
 
+// ================== Currying Start ====================
+
+function add(a) {
+  var a = "X-" + a;
+    return function(b) {
+    var b = "B -"+ a
+      return function(c) {
+         var c = "C -" +b;
+         return c;
+      };
+    };
+  }
+  
+  console.log(add(1)(2)(3));  // output - "C -B -X-1" , but when we use let to declare a, b,c then it gives an redeclaration error
+
+
+  
+// ================== Currying End ====================
+
 
 // ============= Closure start ================
 
 function new_close() {
-    let obj = { "name": "aarju", age: 45 }
+    let obj = { name: "aarju", age: 45 }
     return function () {
         console.log("name is: ", obj.name)
     }
@@ -167,7 +258,7 @@ function createCounter() {
     return function() {
       count++;
       console.log(count);
-    };
+    }; 
   }
   
   const counter = createCounter();
@@ -188,11 +279,12 @@ Even though count is defined in the lexical scope of createCounter, the returned
 3. Function Scope: Variables declared within a function are accessible only within that function.
 
 4. Block Scope: Variables declared with let and const inside a block are accessible only within that block.
+
 Closures: Functions retain access to their lexical scope even when executed outside that scope.
 
 
 
-// ============= End ======================
+  // ============= End ======================
 
 
 
@@ -200,13 +292,11 @@ for (let i = 0; i < 3; i++) {
     setTimeout(() => console.log(i), 1000); // 0,1,2 ,,, Using let in the original code creates a new lexical scope for each iteration of the loop, and each setTimeout callback captures its own value of i from its respective iteration. Therefore, you get the expected output of 0, 1, and 2.
 
 
-
   }
 
   for (var i = 0; i < 3; i++) {
     setTimeout(() => console.log(i), 1000); // 3,3,3   ,, . In the case of var, there is only one variable i that is shared among all iterations of the loop, and by the time the setTimeout callbacks are executed, the loop has already completed, and i is left with the final value of 3.
   }
-
 
 
 
@@ -259,7 +349,7 @@ const primeNumbersInArray = findPrimeNumbers(randomArray);
 console.log("Prime numbers in the array:", primeNumbersInArray);
 
 
-///============= Sorting an array with oddd numbr rervers =========
+///============= Sorting an array with oddd numbr revers =========
 
 
  // n to flip elements
@@ -280,9 +370,7 @@ console.log("Prime numbers in the array:", primeNumbersInArray);
                 st.push(x);
             c++;
         }
- 
         c = 0;
- 
         // Replacing current elements at odd
         // indexes with element at top of stack
         for (let i = 0; i < n; i++) {
@@ -298,9 +386,7 @@ console.log("Prime numbers in the array:", primeNumbersInArray);
     }
      
     let arr1 = [ 1, 2, 3, 4, 5, 6 ];
-  
     let n = arr1.length;
-  
     flipHalf(arr1, n);
     
 
@@ -359,8 +445,107 @@ console.log("Prime numbers in the array:", primeNumbersInArray);
       console.log(isPalindrome("racecar")); // true
       console.log(isPalindrome("programmer")); // false
 
+// ==================== Count Vowels and Consonants from string =================
 
 
+function sum(str){
+  let ary = str.split('')
+  console.log("ary",ary)
+  let vowel_count = consonent =0;
+  console.log("ary",vowel_count,consonent )
+  let vowel_ary =['a','e','i','o','u']
+  for(char of ary){
+      if(vowel_ary.some((val,ind)=> val == char)){
+           vowel_count++
+      }else{
+          consonent++
+      }
+      
+  }
+  return {"vowel_count":vowel_count , "cons_count":consonent }
+  }
+  
+  console.log(sum("educationbb"))
+
+//=================find Anagrams =======================
+
+function areAnagrams(str1, str2) {
+  //   Remove any non-alphabetic characters and convert to lowercase
+    let normalizedStr1 = str1.replace(/[^\w]/g, '').toLowerCase();
+    let normalizedStr2 = str2.replace(/[^\w]/g, '').toLowerCase();
+  
+    // If lengths differ, they cannot be anagrams
+    if (normalizedStr1.length !== normalizedStr2.length) {
+      return false;
+    }
+  
+    // Sort both strings and compare
+    return normalizedStr1.split('').sort().join('') === normalizedStr2.split('').sort().join('');
+  
+  
+  }
+  
+  console.log(areAnagrams("listen", "silent"));
+
+// ========================= Flatten an Array ==============
+
+
+function flatten(arr){
+  let flat_ary=[]
+   let flathandle = (arry) =>{
+       let count =0
+       while(count<arry.length){
+           let val = arry[count]
+           if(Array.isArray(val)){
+               flathandle(val)
+           }else{
+               flat_ary.push(val)
+           }
+           count++
+       }
+   }
+   flathandle(arr)
+   return flat_ary
+}
+console.log(flatten([1, [2, 3], [4, [5], [6,[7]]]]))
+
+
+
+const arr1 = [1, 2, [3, 4]];
+arr1.flat(); 
+// [1, 2, 3, 4]
+const arr2 = [1, 2, [3, 4, [5, 6]]];
+arr2.flat();
+// [1, 2, 3, 4, [5, 6]]
+const arr3 = [1, 2, [3, 4, [5, 6]]];
+arr3.flat(2);
+// [1, 2, 3, 4, 5, 6]
+const arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+arr4.flat(Infinity);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+/* Flatten Array Holes */
+const arr5 = [1, 2, , 4, 5];
+arr5.flat();
+// [1, 2, 4, 5]
+
+
+//============================ find the longest word ===================
+
+function findLongestWord(str) {
+  // Split the string into an array of words
+  const words = str.split(" ");
+  let longestWord = "";
+  
+  for (let word of words) {
+      if (word.length > longestWord.length) {
+          longestWord = word;
+      }
+  }
+  
+  return longestWord;
+}
+
+console.log(findLongestWord("she talks very loud")); // Output: "talks"
 // ============================Find the count of two consecutive vowels in a given string =================================
 
 //Consecutive vowels refer to two or more vowels that appear in a row, without any consonants or other non-vowel characters in between.
@@ -386,8 +571,8 @@ console.log("Prime numbers in the array:", primeNumbersInArray);
 A shallow copy is a copy that only goes one level deep. In other words, it copies the object and all its properties, but any nested objects or arrays will still reference the same memory location as the original object. 
 
 const originalObject = { a: 1, b: { c: 2 } };  
-const shallowCopy = { ...originalObject };  
-
+const shallowCopy = { ...originalObject };   // arr.slice() this method create a shallow copy
+ 
 shallowCopy.a = 3; // Changes shallowCopy, but not originalObject  
 shallowCopy.b.c = 4; // Changes both shallowCopy and originalObject  
 
@@ -422,6 +607,8 @@ Lexical scope (also known as static scope) refers to the scope that is determine
 lexical scope is the concept of determining the scope of a variable based on its declaration. This means that the scope of a variable is determined by the block of code in which it is declared, not by the block of code in which it is used.
 
 
+
+
 //================ MYSQL Stored Procedure ===============================
 
 
@@ -449,9 +636,72 @@ It abstracts the underlying table schema and restricts access to only the data r
 
 A view also helps simplify queries because it presents a less complex version of the schema. For example, an application developer doesn’t need to create detailed, multi-table joins but can instead invoke the view in a basic SELECT statement. 
 
-SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+CREATE VIEW OrderCustomerView AS
+SELECT Order
+s.OrderID, Customers.CustomerName, Orders.OrderDate
 FROM Orders
 INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
+
+
+// ===================== SQL Injection =====================
+
+SQL injection is a type of security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. It typically occurs when user input is improperly sanitized and included directly in SQL queries. This can lead to unauthorized access to or manipulation of the database, potentially exposing or altering sensitive data.
+
+example -
+
+const userInput = "some input"; // Example user input
+const query = `SELECT * FROM users WHERE username = '${userInput}' AND password = 'password'`;
+
+If an attacker provides the following input:
+
+const userInput = "' OR '1'='1";
+
+SELECT * FROM users WHERE username = '' OR '1'='1' AND password = 'password';
+
+The clause '1'='1' is always true, so the query will return all rows in the users table, potentially allowing unauthorized access.
+
+Types of SQL Injection-
+
+Classic SQL Injection: Basic injection where an attacker modifies the SQL query.
+Blind SQL Injection: When the attacker cannot see the result of the query but can infer data based on the application's behavior.
+Error-based SQL Injection: The attacker causes the database to generate an error message, which can provide information about the database structure.
+Union-based SQL Injection: The attacker uses the UNION SQL operator to combine the results of two or more queries into a single result.
+
+Prevention -
+
+1. Use Stored Procedures
+2. Validate and Sanitize Input - 
+
+Ensure that user input conforms to expected formats, lengths, and types. Use validation libraries to enforce these rules.
+3. Use ORM Libraries -
+
+ORM libraries like Sequelize (for Node.js) or Hibernate (for Java) automatically handle many SQL injection prevention mechanisms.
+
+
+// ===  Normalizatin and Denormalization in MYSql =================
+
+normalization -
+
+normalization is a systematic approach to organizing data in a relational database to reduce redundancy and improve data integrity.It involves dividing large tables into smaller ones and defining relationships among them to ensure that the database is efficient and easy to maintain.
+
+First Normal Form (1NF) - Each column contains only one value per row. Each row must be unique.
+
+Second Normal Form (2NF) - All non-key attributes are fully functionally dependent on the primary key. This means that non-key attributes must depend on the entire primary key, not just a part of it (for tables with composite primary keys).
+
+Third Normal Form (3NF) - All the attributes are functionally dependent only on the primary key. There should be no transitive dependency, meaning non-key attributes should not depend on other non-key attributes.
+
+Higher Normal Forms -
+
+Boyce-Codd Normal Form (BCNF): A stricter version of 3NF where every determinant is a candidate key.
+Fourth Normal Form (4NF): Deals with multi-valued dependencies and requires a table to be in BCNF and not have any multi-valued dependencies.
+Fifth Normal Form (5NF): Deals with join dependencies and requires a table to be in 4NF and not have any join dependencies.
+
+Denormalization -
+
+While normalization optimizes data integrity and reduces redundancy, it can sometimes lead to performance issues due to the complexity of joins required to retrieve related data. Denormalization is the process of introducing redundancy into a database by combining tables or reducing the number of joins, which can improve read performance at the cost of increased storage and potential anomalies.
+
+Denormalization is often used in read-heavy systems where performance is more critical than write operations, such as in data warehouses and analytical databases. The decision to denormalize should be based on careful consideration of the application's requirements and workload.
+
 
 
 
@@ -510,7 +760,7 @@ SHOW TRIGGERS FROM supply_chain  // suply_chain is a DB name
 
 
 
-// ========================= Closure inside currying to store a,b vairable for later use==================================
+// ============ Closure inside currying to store a,b vairable for later use =============================
 
 function func(a){
         return function(b){
@@ -554,3 +804,25 @@ Websocket Apis =
 
     The SOAP is use to design api and its approach is highly structured and uses XML data format.
     SOAP focuses on reliability and vertical scalability, which makes it suitable for enterprise and mission-critical applications that require high security and reliability.
+
+
+    // =================== What makes nodejs more scalabel ====================
+
+    Node.js is designed to be highly scalable, making it suitable for building applications that can handle a large number of concurrent connections. Several features and architectural decisions contribute to the scalability of Node.js:
+
+    1. Event-Driven, Non-Blocking I/O
+    2. Single-Threaded Event Loop
+    3. Asynchronous Programming
+    4. Cluster Module
+    5. Scalable Network Applications
+    6. Microservices Architecture
+    7. Efficient Memory Usage
+    8. Horizontal and Vertical Scaling
+
+Node.js supports both horizontal and vertical scaling:
+
+Horizontal Scaling: Adding more instances of the application, often distributed across multiple machines.
+Vertical Scaling: Increasing the resources (CPU, memory) of a single machine where the application is running.
+
+// ================  Sharding in MongoDB ====================
+
