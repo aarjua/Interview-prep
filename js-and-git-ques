@@ -1,0 +1,226 @@
+// ============================== JavaScript Compiler =======================
+
+1. https://onecompiler.com/javascript/42vr48xt3
+
+
+//======================= Git command ===========================
+
+
+Git Revert:git revert is used to undo changes from a specific commit by creating a new commit that reverses the changes introduced by the targeted commit
+
+
+ex- 
+git revert abc123
+
+This will create a new commit that undoes the changes made by commit abc123.
+
+
+git rebase creates a new set of commits applied on top of the target branch, while git merge creates a new merge commit that combines the changes from both branches
+
+Git stash allows you to temporarily save changes in your working directory that are not ready to be committed. This is useful when you need to switch branches or pull changes without committing unfinished work.
+
+Git Stage:  git add <file>: Adds a specific file to the staging area.
+            git add .: Adds all changes to the staging area.
+
+
+// =========== along with jwt what else we can use for authentication and authorization ===================
+
+1. Session-Based Authentication
+
+Pros:
+Secure by default (cookies are HTTP-only, preventing access via JavaScript).
+Server has full control over the session lifecycle.
+Cons:
+Requires server-side session storage (not stateless like JWT).
+Not ideal for APIs or mobile apps.
+Example (Node.js using Express):
+
+js
+Copy code
+const session = require('express-session');
+
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true } // Set to true if using HTTPS
+}));
+
+
+2. OAuth 2.0
+How it works:
+OAuth 2.0 is a token-based protocol primarily used for authorization.
+A user logs in via an authorization server (e.g., Google, Facebook), which provides an access token to the client. This token can then be used to access resources on the client’s behalf.
+OAuth 2.0 also supports OpenID Connect (OIDC) for authentication.
+
+
+Use case: Used for third-party authentication (e.g., “Login with Google”) and granting limited access to user resources without exposing credentials.
+Pros:
+Ideal for Single Sign-On (SSO) and third-party authentication.
+Token-based, so works well with mobile apps and SPAs (Single Page Applications).
+Cons:
+Complex to implement.
+Requires an external authentication provider if used for SSO.
+
+
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+passport.use(new GoogleStrategy({
+  clientID: 'GOOGLE_CLIENT_ID',
+  clientSecret: 'GOOGLE_CLIENT_SECRET',
+  callbackURL: "/auth/google/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+  // Save user profile or access token in the database
+  done(null, profile);
+}));
+
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+
+
+
+
+//==================== end ====================================
+
+
+
+
+//===================== how can i prevent my app by unintentionally by end user by stealing the jwt , how can we secure jwt ===========================
+
+
+1. Use HTTPS
+Why: HTTPS ensures that data transmitted between the client and server is encrypted.
+How: Always use HTTPS to protect JWTs from being intercepted during transmission via man-in-the-middle attacks.
+Example: Make sure your server and client are served over 
+ex-   https://.
+
+
+
+2. Short Token Expiration Time (TTL)
+Why: Short-lived tokens reduce the window in which a stolen JWT can be used.
+
+ex-
+const jwt = require('jsonwebtoken');
+const token = jwt.sign({ userId: 123 }, 'secret-key', { expiresIn: '15m' });
+
+
+3. Store JWTs Securely
+
+
+Why: Storing JWTs improperly can lead to token theft via cross-site scripting (XSS) or other vulnerabilities.
+How:
+Do not store JWTs in localStorage or sessionStorage: These can be accessed by JavaScript, making them vulnerable to XSS attacks.
+Use HTTP-only cookies: These cookies are not accessible by JavaScript, reducing the risk of theft.
+
+
+ex- 
+
+
+res.cookie('token', token, {
+  httpOnly: true,  // JavaScript can't access the cookie
+  secure: true,    // Send only over HTTPS
+  maxAge: 15 * 60 * 1000 // 15 minutes
+});
+
+
+
+4. Implement Refresh Tokens
+
+Why: A refresh token is used to get a new JWT when the old one expires, allowing short-lived access tokens to be used safely without requiring users to log in again.
+How: Store refresh tokens securely (preferably in an HTTP-only cookie) and allow the client to request a new JWT using this refresh token when needed.
+
+
+Example:
+// Use refresh token to issue a new access token
+const newAccessToken = jwt.sign({ userId: 123 }, 'access-secret', { expiresIn: '15m' })
+
+
+
+
+// =========== Nodejs scale in production server =======================
+
+
+
+Scaling a Node.js app in production is essential to handle increasing traffic, improve performance, and ensure high availability. There are several strategies you can use to scale a Node.js app depending on your architecture and infrastructure setup. Here's a breakdown of the key methods:
+
+1. Vertical Scaling
+
+Increase Server Resources: This involves adding more CPU, memory, or disk space to your existing server. It’s the simplest form of scaling but limited by hardware capacity.
+Pros: Easy to implement.
+Cons: Limited by the machine’s hardware; not highly scalable.
+Use when: You need quick improvements without changing your app’s architecture.
+
+
+
+2. Horizontal Scaling 
+
+(Clustering)
+
+Use Node.js Cluster Module: Node.js runs on a single thread, but the cluster module allows you to take advantage of multi-core CPUs by forking multiple instances of your application.
+
+This creates worker processes that share the same server port. Each core runs its own instance of your app, and the operating system balances requests across the processes.
+
+Process Managers (PM2): Use a process manager like PM2 to automatically fork processes, monitor your app, and restart it in case of failure.
+
+PM2 makes clustering easier and adds extra features like log management, process monitoring, and zero-downtime deployment.
+Example PM2 command to scale across all CPU cores:
+bash
+Copy code
+pm2 start app.js -i max
+
+
+// =========== When your Node.js code works fine locally but breaks in production, here are some steps to help you identify and resolve the issue: =======================
+
+
+1. Check Logs = Use tools like Winston, Morgan, or Bunyan for logging in production. Also, check the server logs (/var/log if it's Linux).
+
+
+  2. Environment Differences
+  3. Check Dependencies
+  4. Check Build or Deployment Issues
+  5. Database Configuration
+  6. Check Server Configuration
+  7. Update Node.js Version
+  10. Debugging in Production = PM2 Monitoring
+
+
+
+  // ===================================== fetch large amount data ========================
+
+
+  Fetching a large amount of data, like 20 lakh (2 million) records, from a database can indeed impact performance if not managed properly. Here are some strategies to improve performance when retrieving large datasets:
+
+Pagination: Instead of fetching all records at once, use pagination to retrieve a subset of records (e.g., 100 or 1000 at a time). This reduces memory usage and improves response time.
+
+Indexes: Ensure that your database tables are properly indexed. Indexes can significantly speed up query performance, especially for searches, sorts, and joins.
+
+Selective Fetching: Retrieve only the columns you need rather than selecting all columns. This reduces the amount of data transferred and processed.
+
+Caching: Implement caching strategies using in-memory databases (like Redis) or application-level caching to store frequently accessed data, minimizing database hits.
+
+Batch Processing: If you need to process records, consider batch processing to handle them in smaller chunks rather than all at once.
+
+Asynchronous Fetching: If your application allows it, use asynchronous operations to fetch data. This way, your application can continue processing while waiting for the data.
+
+Database Optimization: Regularly optimize your database, including analyzing query performance and updating statistics.
+
+Denormalization: In some cases, denormalizing your database schema (i.e., combining tables) can reduce the complexity of queries and improve read performance.
+
+Use a Data Warehouse: If you are running complex queries on large datasets, consider using a data warehouse optimized for analytics.
+
+Limit Results: Always use limits in your queries when possible, especially for operations where you don’t need all the data.
+
+
+
+// ===================== Agile methodlogy ==============================
+
+Agile methodology is a flexible, iterative approach to software development and project management that emphasizes collaboration, customer feedback, and small, rapid releases. It focuses on delivering value incrementally rather than completing the entire project at once
+
+Benefits of Agile methodlogy:
+Faster delivery of features.
+Increased flexibility and adaptability to change.
+Higher customer satisfaction through continuous feedback.
+Improved team collaboration and morale.
+Focus on delivering working software early and frequently.
+Agile methodology is widely used in software development but can also be applied in other project management fields where flexibility and adaptability are key.
