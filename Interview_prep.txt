@@ -1,9 +1,14 @@
 1. Introduction -
+I'm an employee of trusted partner Nice Software Solution .
+
+
+I'm working for Neosoft
+
 
 Hello, I'm Aarju,
 I belongs to Kanpur, a happiest city in india.
 I've completed Bachelors with mathematics in 2020 from Kanpur university.
-as a software developer with overall 4.5 years of experience in which 1 & half year in php with CI framework and 2 & half year as a nodejs developer.
+as a software developer with overall 4 years of experience in which 1 & half year in php with CI framework and 2 & half year as a nodejs developer.
 I have worked on 4-5 projects on nodejs. stacks that i have worked on express js framework with mysql database along with sequelize ORM.
 
 That's all about me . Thank you.
@@ -61,7 +66,9 @@ Microservices architecture -  This approach is often referred to as modular prog
 
 
 That's all about my project. Thank you.
-==================================================================================================================================================================== Face any difficulties in your project
+================================================================================================================
+
+======================== Face any difficulties in your project  ==========================
 
 
 here I want to add my experience about the importance of API rate limiting. In one of my past project, I didn’t implement rate limits on a public API, which led to issues in production due to excessive traffic. This incident highlighted how crucial it is to apply rate limits, especially for APIs that are publicly accessible or vulnerable to abuse.
@@ -95,7 +102,7 @@ app.use(rateLimit({
 
 
 As a backend developer, I see myself continuing to grow and develop my skills and expertise in the field. In the next five years.
-I also plan to stay up-to-date with the latest technologies and trends in backend development, such as serverless architecture, microservices, and containerization.By
+I also plan to stay up-to-date with the latest technologies and trends in backend development, dsuch as serverless architecture, microservices, and containerization.By
 continuously learning and expanding my knowledge, I can ensure that I am able to provide the best possible solutions to my clients and contribute to the success of my organization.
 
  
