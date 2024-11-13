@@ -19,6 +19,8 @@ git rebase creates a new set of commits applied on top of the target branch, whi
 
 Git stash allows you to temporarily save changes in your working directory that are not ready to be committed. This is useful when you need to switch branches or pull changes without committing unfinished work.
 
+Ex - git stash 
+
 Git Stage:  git add <file>: Adds a specific file to the staging area.
             git add .: Adds all changes to the staging area.
 
@@ -224,3 +226,90 @@ Higher customer satisfaction through continuous feedback.
 Improved team collaboration and morale.
 Focus on delivering working software early and frequently.
 Agile methodology is widely used in software development but can also be applied in other project management fields where flexibility and adaptability are key.
+
+
+// ========================== Node.js has some disadvantages ====================
+
+Performance bottlenecks
+Node.js is single threaded, so it can't process CPU-bound tasks quickly. Heavy computations can block incoming requests, which can decrease performance. 
+
+Callback hell
+Node.js relies heavily on callbacks, which can lead to nested callbacks that make code difficult to understand and maintain. 
+
+Unstable API
+The Application Programming Interface (API) changes frequently and is not reliable. 
+
+Lack of library support
+JavaScript lacks a well-equipped and robust library system. 
+
+Asynchronous programming model
+Some engineers may find this programming method more difficult than linear blocking I/O programming. 
+
+Vulnerability to attacks
+Node.js is vulnerable to memory-based or heap-based attacks if your projects run on a shared machine. 
+
+Immature tooling and dependency management
+The npm registry isn't structured well enough to offer tools based on their quality. 
+
+// ===================== Diff between Nodejs , Ajax and Js =====================
+
+
+Node.js: Node.js is a server-side runtime environment that allows JavaScript to be executed on the server. It’s built on Chrome's V8 JavaScript engine and is used to build scalable, high-performance web applications, APIs, and backend services.
+Node.js is a backend server environment for running JavaScript on the server.
+
+AJAX (Asynchronous JavaScript and XML): AJAX is a technique used on the client side (in the browser) to make asynchronous HTTP requests to a server without reloading the entire webpage. It enables dynamic content updates, allowing parts of a webpage to refresh with new data without a full page reload.
+AJAX is a client-side technique for sending asynchronous HTTP requests from the browser to the server.
+
+JavaScript (JS): A high-level, interpreted scripting language primarily used to create dynamic and interactive web content. Initially, JavaScript was only used in browsers for client-side scripting but can now run on servers, thanks to environments like Node.js.
+
+//======================== Process Object in nodejs ==========================
+
+In Node.js, the process object is a global object that provides information about and control over the current Node.js process. It’s available without requiring any modules and is very useful for interacting with the environment where the application is running.
+
+1. Basic Information about the Process
+
+process.pid: Returns the process ID (PID) of the current Node.js process.
+
+process.version: Shows the Node.js version in use, like v14.17.6.
+
+process.platform: Returns the platform Node.js is running on, like win32, linux, or darwin (for macOS).
+
+console.log(process.env.NODE_ENV);
+
+
+//===================== Differences Between require and import================================
+
+1. require
+
+require is the older CommonJS syntax used to import modules in Node.js. It’s synchronous and commonly used in Node.js for loading modules and files.
+require loads modules synchronously, meaning it will block code execution until the module is fully loaded. This can impact performance if loading large modules.
+Dynamic Loading: You can use require dynamically, i.e., you can require modules conditionally at runtime.
+Exports Object: Modules in CommonJS are exported as an object, typically using module.exports or exports.
+// myModule.js
+module.exports = {
+  greet: function() {
+    console.log("Hello, World!");
+  }
+};
+
+2. import
+import is the newer ES6 (ECMAScript 2015) syntax for importing modules. It is part of the ES6 module system and is now widely supported in both browsers and Node.js (with some setup).
+Asynchronous: import is asynchronous by default, which allows for better optimization, especially in the browser.
+
+ES6 Modules: import is part of the ES6 module system and is standardized, meaning it can be used in both frontend and backend JavaScript environments.
+
+Static Structure: import statements are statically analyzed, meaning they must be declared at the top of the file and cannot be conditionally loaded.
+
+Named Exports: ES6 modules support named exports, allowing more flexibility in what you import from a module.
+
+Requires .mjs Extension or "type": "module": In Node.js, you must either use the .mjs file extension for ES6 modules or set "type": "module" in package.json.
+
+
+
+Feature	                      require (CommonJS)	                          import (ES6 Modules)
+Syntax	                      const module = require('module-name');	     import module from 'module-name';
+Default Mode	                Synchronous	                           Asynchronous (optimized for the browser)
+Dynamic Loading	              Supported	          Not directly supported, though import() function is available
+Usage Context	                Node.js	                      Browser and Node.js (with .mjs or "type": "module")
+Exports Style	                module.exports or exports object	               export and export default
+Can Be Used Conditionally	        Yes	                             No (must be at the top level of the module)
