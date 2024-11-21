@@ -1,6 +1,7 @@
 // ============================== JavaScript Compiler =======================
 
 1. https://onecompiler.com/javascript/42vr48xt3
+
 2. https://www.jsv9000.app/
 
 
@@ -26,6 +27,14 @@ Git Stage:  git add <file>: Adds a specific file to the staging area.
             git add .: Adds all changes to the staging area.
 
 
+
+//================== Streams in nodejs (Stream module / File System stream) ===================
+
+
+Use the stream module when you need flexibility to create custom stream behavior (e.g., for network requests, real-time data processing, transforming data as it passes through).
+
+Use fs.createReadStream and fs.createWriteStream when you need to work with files directly, especially large files, since they are optimized for efficient file streaming.
+
 // =========== along with jwt what else we can use for authentication and authorization ===================
 
 1. Session-Based Authentication
@@ -48,7 +57,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: true } // Set to true if using HTTPS
 }));
-
 
 2. OAuth 2.0
 How it works:
