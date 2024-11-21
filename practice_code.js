@@ -751,7 +751,7 @@ function countConsecutiveVowels(str) {
 }
 
 // Example usage:
-const str = 'abeitounoao';
+const str = 'abeitounoao';expec
 const count = countConsecutiveVowels(str);
 console.log(`Count of consecutive vowels: ${count}`);
 
