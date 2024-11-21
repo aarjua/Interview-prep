@@ -60,7 +60,7 @@ Output:
 3
 5
 7
-undefined
+undefined // got undefined coz we function doesn't have any return statement if we return someting or make this y function as an self invoking function then it will not print. 
 4
 6
 2
