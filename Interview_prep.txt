@@ -8,7 +8,7 @@ I'm working for Neosoft
 Hello, I'm Aarju,
 I belongs to Kanpur, a happiest city in india.
 I've completed Bachelors with mathematics in 2020 from Kanpur university.
-as a software developer with overall 4 years of experience in which 1 & half year in php with CI framework and 2 & half year as a nodejs developer.
+as a software developer with overall 4.4 years of experience in which 1 & half year in php with CI framework and 2 & half year as a nodejs developer.
 I have worked on 4-5 projects on nodejs. stacks that i have worked on express js framework with mysql database along with sequelize ORM.
 
 That's all about me . Thank you.
