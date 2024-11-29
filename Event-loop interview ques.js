@@ -2,9 +2,10 @@
 Microtasks and Macrotasks
 In JavaScript, the event loop handles two types of tasks: microtasks and macrotasks.Understanding these is crucial for grasping how asynchronous code is executed in JavaScript.
 
-  Microtasks -
+  
+Microtasks -
 
-  Microtasks are tasks that need to be executed immediately after the currently executing script and before any macrotasks.Microtasks are processed after the currently executing script and before the event loop continues to the next phase.They are typically used for more immediate, high - priority tasks.
+Microtasks are tasks that need to be executed immediately after the currently executing script and before any macrotasks.Microtasks are processed after the currently executing script and before the event loop continues to the next phase.They are typically used for more immediate, high - priority tasks.
 
 
 Common microtasks include:
