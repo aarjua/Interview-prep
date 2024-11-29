@@ -1,8 +1,4 @@
 1. Introduction -
-I'm an employee of trusted partner Nice Software Solution .
-
-
-I'm working for Neosoft
 
 
 Hello, I'm Aarju,
@@ -102,8 +98,8 @@ app.use(rateLimit({
 
 
 As a backend developer, I see myself continuing to grow and develop my skills and expertise in the field. In the next five years.
-I also plan to stay up-to-date with the latest technologies and trends in backend development, dsuch as serverless architecture, microservices, and containerization.By
-continuously learning and expanding my knowledge, I can ensure that I am able to provide the best possible solutions to my clients and contribute to the success of my organization.
+I also plan to stay up-to-date with the latest technologies and trends in backend development, such as serverless architecture, microservices, and containerization.
+By continuously learning and expanding my knowledge, I can ensure that I am able to provide the best possible solutions to my clients and contribute to the success of my organization.
 
  
 =======================================================================================================================================================================================
@@ -130,6 +126,18 @@ continuously learning and expanding my knowledge, I can ensure that I am able to
 ====================================================================================================================================================================
 
 
+9. How to deliver project on time  - 
 
 
+To deliver a project on time, I start by clearly understanding the scope and requirements. I break down the project into smaller tasks, estimate timelines, and prioritize them using a structured approach like the MoSCoW method  (Must Have, Should Have, Could Have, Won’t Have). I regularly communicate with the team and stakeholders to ensure everyone is aligned and potential issues are addressed early. I also use project management tools like Jira for tracking progress and ensure adaptability by reassessing priorities if challenges arise. Additionally, I focus on risk management to preempt potential delays and maintain a balance between meeting deadlines and delivering quality outcomes.
+
+====================================================================================================================================================================
+
+
+10 . What if someone is not contributing in project -
+
+
+If a team member is not contributing, I would first have a one-on-one conversation to understand the root cause. They might be facing personal challenges, unclear expectations, or skill gaps. Based on the discussion, I’d provide support, clarify their role, and, if necessary, offer mentorship or training. I’d set measurable goals to track their progress and encourage open communication to make them feel supported. If the situation doesn’t improve despite these efforts, I’d follow company policies to address the issue formally. My goal is always to ensure the individual feels empowered to contribute while maintaining the overall productivity of the team.
+
+====================================================================================================================================================================
 
