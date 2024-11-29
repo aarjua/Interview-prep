@@ -55,6 +55,38 @@ var demo = function () {
 demo();   // output is initialize error
 
 
+
+
+const obj ={
+  name :"aarju",
+  arrow: ()=>{
+    console.log(this)
+  },
+   abc : function(){
+    console.log(this)
+  },
+}
+
+obj.arrow();  // {} coz arrow func doesn't have this keyword
+obj.abc();    //  { name: 'aarju', arrow: [Function: arrow], abc: [Function: abc] } 
+
+
+// ================== Create a delay function ====================
+
+
+async function abc(){
+  console.log("start")
+  await delay(2000); // delay function will wait for 2 sec. the  print end
+  console.log("end")
+}
+
+function delay(ms) {
+    return new Promise(resolve => {
+    console.log("hhhh"); // Print the message
+    setTimeout(resolve, ms); // Wait for the specified delay
+  });
+}
+
 //========================== Rest and Spread Operator ==========================
 
 
@@ -1022,3 +1054,249 @@ Vertical Scaling: Increasing the resources(CPU, memory) of a single machine wher
 
 
 Sharding is a method for distributing data across multiple machines.MongoDB uses sharding to support deployments with very large data sets and high throughput operations.Database systems with large data sets or high throughput applications can challenge the capacity of a single server.
+
+
+
+// ====================   Summary of SOLID principles  ===========================
+
+The SOLID principles are a set of five design principles in object-oriented programming aimed at creating software that is easy to understand, maintain, and extend. 
+
+SOLID -
+
+1. Single Responsibility Principle (SRP)
+
+Definition: A class should have only one reason to change, meaning it should only have one responsibility.
+Why?: Reduces complexity, improves readability, and makes maintenance easier.
+
+
+Ex- 
+
+
+// BAD: One class with multiple responsibilities
+class User {
+    createUser() { /* logic to create user */ }
+    sendEmail() { /* logic to send email */ }
+    logActivity() { /* logic to log activity */ }
+}
+
+// GOOD: Separate responsibilities into different classes
+class User {
+    createUser() { /* logic to create user */ }
+}
+class EmailService {
+    sendEmail() { /* logic to send email */ }
+}
+class Logger {
+    logActivity() { /* logic to log activity */ }
+}
+
+
+
+2. Open/Closed Principle (OCP)
+
+Definition: Classes should be open for extension but closed for modification. You should be able to add new functionality without altering existing code.
+Why?: Promotes code reusability and minimizes the risk of introducing bugs.
+
+Ex- 
+
+// BAD: Modifying existing class to add new functionality
+class Shape {
+    getArea(shape) {
+        if (shape.type === 'circle') {
+            return Math.PI * shape.radius ** 2;
+        } else if (shape.type === 'rectangle') {
+            return shape.width * shape.height;
+        }
+    }
+}
+
+// GOOD: Use inheritance or interfaces to extend functionality
+class Shape {
+    getArea() {}
+}
+class Circle extends Shape {
+    constructor(radius) {
+        super();
+        this.radius = radius;
+    }
+    getArea() {
+        return Math.PI * this.radius ** 2;
+    }
+}
+class Rectangle extends Shape {
+    constructor(width, height) {
+        super();
+        this.width = width;
+        this.height = height;
+    }
+    getArea() {
+        return this.width * this.height;
+    }
+}
+
+
+
+
+The SOLID principles are a set of five design principles in object-oriented programming aimed at creating software that is easy to understand, maintain, and extend. These principles help developers design systems that are more robust and less prone to issues caused by tightly coupled or poorly structured code. Here's a breakdown of each principle:
+
+1. Single Responsibility Principle (SRP)
+Definition: A class should have only one reason to change, meaning it should only have one responsibility.
+Why?: Reduces complexity, improves readability, and makes maintenance easier.
+Example:
+javascript
+Copy code
+// BAD: One class with multiple responsibilities
+class User {
+    createUser() { /* logic to create user */ }
+    sendEmail() { /* logic to send email */ }
+    logActivity() { /* logic to log activity */ }
+}
+
+// GOOD: Separate responsibilities into different classes
+class User {
+    createUser() { /* logic to create user */ }
+}
+class EmailService {
+    sendEmail() { /* logic to send email */ }
+}
+class Logger {
+    logActivity() { /* logic to log activity */ }
+}
+2. Open/Closed Principle (OCP)
+Definition: Classes should be open for extension but closed for modification. You should be able to add new functionality without altering existing code.
+Why?: Promotes code reusability and minimizes the risk of introducing bugs.
+Example:
+javascript
+Copy code
+// BAD: Modifying existing class to add new functionality
+class Shape {
+    getArea(shape) {
+        if (shape.type === 'circle') {
+            return Math.PI * shape.radius ** 2;
+        } else if (shape.type === 'rectangle') {
+            return shape.width * shape.height;
+        }
+    }
+}
+
+// GOOD: Use inheritance or interfaces to extend functionality
+class Shape {
+    getArea() {}
+}
+class Circle extends Shape {
+    constructor(radius) {
+        super();
+        this.radius = radius;
+    }
+    getArea() {
+        return Math.PI * this.radius ** 2;
+    }
+}
+class Rectangle extends Shape {
+    constructor(width, height) {
+        super();
+        this.width = width;
+        this.height = height;
+    }
+    getArea() {
+        return this.width * this.height;
+    }
+}
+
+3. Liskov Substitution Principle (LSP)
+
+Definition: Subtypes must be substitutable for their base types without altering the correctness of the program.
+Why?: Ensures that derived classes extend the base class without changing its behavior.
+
+Ex-
+
+
+// BAD: Derived class violates the behavior of the base class
+class Bird {
+    fly() { console.log("Flying"); }
+}
+class Penguin extends Bird {
+    fly() { throw new Error("Penguins can't fly!"); }
+}
+
+// GOOD: Refactor to follow LSP
+class Bird { }
+class FlyingBird extends Bird {
+    fly() { console.log("Flying"); }
+}
+class Penguin extends Bird {
+    swim() { console.log("Swimming"); }
+}
+
+
+4. Interface Segregation Principle (ISP)
+
+Definition: A class should not be forced to implement interfaces it doesn’t use.
+Why?: Reduces unnecessary dependencies and keeps interfaces specific to client needs.
+
+Ex-
+
+// BAD: One interface with unrelated methods
+class Animal {
+    walk() {}
+    fly() {}
+}
+class Dog extends Animal {
+    fly() { throw new Error("Dogs can't fly!"); }
+}
+
+// GOOD: Separate interfaces
+class Walkable {
+    walk() {}
+}
+class Flyable {
+    fly() {}
+}
+class Dog extends Walkable {
+    walk() { console.log("Walking"); }
+}
+class Bird extends Walkable {
+    walk() { console.log("Walking"); }
+}
+class Sparrow extends Bird {
+    fly() { console.log("Flying"); }
+}
+
+
+5. Dependency Inversion Principle (DIP)
+
+Definition: High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details; details should depend on abstractions.
+Why?: Promotes decoupling and flexibility.
+
+Ex-
+
+// BAD: High-level class depends on low-level class
+class Database {
+    save(data) { /* Save to database */ }
+}
+class UserService {
+    constructor() {
+        this.database = new Database();
+    }
+    saveUser(user) {
+        this.database.save(user);
+    }
+}
+
+// GOOD: High-level class depends on an abstraction
+class Database {
+    save(data) {}
+}
+class MySQLDatabase extends Database {
+    save(data) { /* Save to MySQL */ }
+}
+class UserService {
+    constructor(database) {
+        this.database = database;
+    }
+    saveUser(user) {
+        this.database.save(user);
+    }
+}
+const database = new MySQLDatabase();
+const userService = new UserService(database);
